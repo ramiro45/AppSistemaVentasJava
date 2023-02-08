@@ -13,4 +13,5 @@ public class pruebagit {
     String prueba ="prueba";
     String hola = "LOREM IPSUM";
     String hhh="hola";
+    int numero = 1234;
 }
