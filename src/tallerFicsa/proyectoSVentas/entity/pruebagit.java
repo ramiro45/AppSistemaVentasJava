@@ -11,4 +11,5 @@ package tallerFicsa.proyectoSVentas.entity;
  */
 public class pruebagit {
     String prueba ="prueba";
+    String hola = "LOREM IPSUM";
 }
