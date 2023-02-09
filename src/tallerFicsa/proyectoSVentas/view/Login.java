@@ -49,6 +49,7 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tallerFicsa/proyectoSVentas/Images/pedroruiz.jpg"))); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOGIN");
         setBackground(new java.awt.Color(51, 153, 255));
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
