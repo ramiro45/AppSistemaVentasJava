@@ -55,6 +55,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 102, 255));
         jPanel1.setForeground(new java.awt.Color(102, 102, 255));
 
+        txtUsuario.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
         txtUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUsuarioActionPerformed(evt);
@@ -70,6 +71,8 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Clave:");
+
+        txtClave.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
 
         btnIngresar.setBackground(new java.awt.Color(51, 51, 255));
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -91,19 +94,12 @@ public class Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addComponent(btnIngresar)))
@@ -145,18 +141,19 @@ public class Login extends javax.swing.JFrame {
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         try {
             AdministradorFrame af = new AdministradorFrame();
-            EmpleadoFrame ef= new EmpleadoFrame();
+            EmpleadoFrame ef = new EmpleadoFrame();
             user = ujc.findByUsuarioAndClave(txtUsuario.getText(), convertirSHA256(txtClave.getText()));
             if (user != null) {
                 if (user.getCargo().equalsIgnoreCase("Administrador")) {
                     dispose();
                     af.setVisible(true);
-                }
-                else{
+                    JOptionPane.showMessageDialog(null, "Bienvenido Administrador", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
                     dispose();
                     ef.setVisible(true);
                 }
-                
+
             } else {
 
                 JOptionPane.showMessageDialog(null, "Las credenciales son incorrectas", "Advertencia", JOptionPane.WARNING_MESSAGE);
