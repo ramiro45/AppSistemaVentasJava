@@ -25,7 +25,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "categoria")
 @NamedQueries({
-    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c WHERE c.condicion=1"),
     @NamedQuery(name = "Categoria.findByIdcategoria", query = "SELECT c FROM Categoria c WHERE c.idcategoria = :idcategoria"),
     @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre"),
     @NamedQuery(name = "Categoria.findByDescripcion", query = "SELECT c FROM Categoria c WHERE c.descripcion = :descripcion"),
@@ -126,5 +126,5 @@ public class Categoria implements Serializable {
     public String toString() {
         return nombre;
     }
-    
+
 }

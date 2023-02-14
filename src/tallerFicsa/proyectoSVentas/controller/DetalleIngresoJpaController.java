@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import tallerFicsa.proyectoSVentas.controller.exceptions.NonexistentEntityException;
@@ -26,6 +27,11 @@ public class DetalleIngresoJpaController implements Serializable {
     public DetalleIngresoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    public DetalleIngresoJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
+    }
+
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -192,5 +198,24 @@ public class DetalleIngresoJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public List<DetalleIngreso> ListarDetalleIngresoxIdIngreso(int id) {
+        EntityManager em = getEntityManager();
+        Ingreso Ingres = new Ingreso();
+        Ingres.setIdingreso(id);
+        try {
+            List<DetalleIngreso> detalleIngresos = em.createNamedQuery("DetalleIngreso.findAllxIdIngreso", DetalleIngreso.class)
+                    .setParameter("idingreso", Ingres)
+                    .getResultList();
+
+            if (detalleIngresos.size() > 0) {
+                return detalleIngresos;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+
 }

@@ -31,8 +31,10 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "ingreso")
 @NamedQueries({
-    @NamedQuery(name = "Ingreso.findAll", query = "SELECT i FROM Ingreso i"),
-    @NamedQuery(name = "Ingreso.findByIdingreso", query = "SELECT i FROM Ingreso i WHERE i.idingreso = :idingreso"),
+    @NamedQuery(name = "Ingreso.findAll", query = "SELECT i FROM Ingreso i WHERE i.tipoComprobante!='Ticket' ORDER BY i.fechaHora DESC"),
+    @NamedQuery(name = "Ingreso.findByIdingreso", query = "SELECT MAX(i.idingreso) FROM Ingreso i"),
+    @NamedQuery(name = "Ingreso.findByMaxNumComprobanteBoleta", query = "SELECT MAX(i.numComprobante) FROM Ingreso i WHERE i.tipoComprobante='Boleta'"),
+    @NamedQuery(name = "Ingreso.findByMaxNumComprobanteFactura", query = "SELECT MAX(i.numComprobante) FROM Ingreso i WHERE i.tipoComprobante='Factura'"),
     @NamedQuery(name = "Ingreso.findByTipoComprobante", query = "SELECT i FROM Ingreso i WHERE i.tipoComprobante = :tipoComprobante"),
     @NamedQuery(name = "Ingreso.findBySerieComprobante", query = "SELECT i FROM Ingreso i WHERE i.serieComprobante = :serieComprobante"),
     @NamedQuery(name = "Ingreso.findByNumComprobante", query = "SELECT i FROM Ingreso i WHERE i.numComprobante = :numComprobante"),
@@ -63,10 +65,10 @@ public class Ingreso implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "impuesto")
-    private BigDecimal impuesto;
+    private Double impuesto;
     @Basic(optional = false)
     @Column(name = "total_compra")
-    private BigDecimal totalCompra;
+    private Double totalCompra;
     @Basic(optional = false)
     @Column(name = "estado")
     private String estado;
@@ -86,7 +88,7 @@ public class Ingreso implements Serializable {
         this.idingreso = idingreso;
     }
 
-    public Ingreso(Integer idingreso, String tipoComprobante, String numComprobante, Date fechaHora, BigDecimal impuesto, BigDecimal totalCompra, String estado) {
+    public Ingreso(Integer idingreso, String tipoComprobante, String numComprobante, Date fechaHora, Double impuesto, Double totalCompra, String estado) {
         this.idingreso = idingreso;
         this.tipoComprobante = tipoComprobante;
         this.numComprobante = numComprobante;
@@ -136,19 +138,19 @@ public class Ingreso implements Serializable {
         this.fechaHora = fechaHora;
     }
 
-    public BigDecimal getImpuesto() {
+    public Double getImpuesto() {
         return impuesto;
     }
 
-    public void setImpuesto(BigDecimal impuesto) {
+    public void setImpuesto(Double impuesto) {
         this.impuesto = impuesto;
     }
 
-    public BigDecimal getTotalCompra() {
+    public Double getTotalCompra() {
         return totalCompra;
     }
 
-    public void setTotalCompra(BigDecimal totalCompra) {
+    public void setTotalCompra(Double totalCompra) {
         this.totalCompra = totalCompra;
     }
 
@@ -208,5 +210,5 @@ public class Ingreso implements Serializable {
     public String toString() {
         return "tallerFicsa.proyectoSVentas.entity.Ingreso[ idingreso=" + idingreso + " ]";
     }
-    
+
 }

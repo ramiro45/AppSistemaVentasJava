@@ -183,6 +183,24 @@ public class CategoriaJpaController implements Serializable {
         }
     }
 
+    public List<Categoria> listarCategoriasActivas() {
+        EntityManager em = getEntityManager();
+        try {
+            List<Categoria> categorias = em.createNamedQuery("Categoria.findAll", Categoria.class)
+                    .getResultList();
+
+            if (categorias.size() > 0) {
+                return categorias;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+    
+    
+
     public Categoria findCategoria(Integer id) {
         EntityManager em = getEntityManager();
         try {

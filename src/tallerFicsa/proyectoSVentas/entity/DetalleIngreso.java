@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Table(name = "detalle_ingreso")
 @NamedQueries({
     @NamedQuery(name = "DetalleIngreso.findAll", query = "SELECT d FROM DetalleIngreso d"),
+    @NamedQuery(name = "DetalleIngreso.findAllxIdIngreso", query = "SELECT d FROM DetalleIngreso d WHERE d.idingreso= :idingreso"),
     @NamedQuery(name = "DetalleIngreso.findByIddetalleIngreso", query = "SELECT d FROM DetalleIngreso d WHERE d.iddetalleIngreso = :iddetalleIngreso"),
     @NamedQuery(name = "DetalleIngreso.findByCantidad", query = "SELECT d FROM DetalleIngreso d WHERE d.cantidad = :cantidad"),
     @NamedQuery(name = "DetalleIngreso.findByPrecioCompra", query = "SELECT d FROM DetalleIngreso d WHERE d.precioCompra = :precioCompra"),
@@ -44,10 +45,10 @@ public class DetalleIngreso implements Serializable {
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "precio_compra")
-    private BigDecimal precioCompra;
+    private Double precioCompra;
     @Basic(optional = false)
     @Column(name = "precio_venta")
-    private BigDecimal precioVenta;
+    private Double precioVenta;
     @JoinColumn(name = "idarticulo", referencedColumnName = "idarticulo")
     @ManyToOne(optional = false)
     private Articulo idarticulo;
@@ -62,7 +63,7 @@ public class DetalleIngreso implements Serializable {
         this.iddetalleIngreso = iddetalleIngreso;
     }
 
-    public DetalleIngreso(Integer iddetalleIngreso, int cantidad, BigDecimal precioCompra, BigDecimal precioVenta) {
+    public DetalleIngreso(Integer iddetalleIngreso, int cantidad, Double precioCompra, Double precioVenta) {
         this.iddetalleIngreso = iddetalleIngreso;
         this.cantidad = cantidad;
         this.precioCompra = precioCompra;
@@ -85,19 +86,19 @@ public class DetalleIngreso implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public BigDecimal getPrecioCompra() {
+    public Double getPrecioCompra() {
         return precioCompra;
     }
 
-    public void setPrecioCompra(BigDecimal precioCompra) {
+    public void setPrecioCompra(Double precioCompra) {
         this.precioCompra = precioCompra;
     }
 
-    public BigDecimal getPrecioVenta() {
+    public Double getPrecioVenta() {
         return precioVenta;
     }
 
-    public void setPrecioVenta(BigDecimal precioVenta) {
+    public void setPrecioVenta(Double precioVenta) {
         this.precioVenta = precioVenta;
     }
 
@@ -141,5 +142,5 @@ public class DetalleIngreso implements Serializable {
     public String toString() {
         return "tallerFicsa.proyectoSVentas.entity.DetalleIngreso[ iddetalleIngreso=" + iddetalleIngreso + " ]";
     }
-    
+
 }

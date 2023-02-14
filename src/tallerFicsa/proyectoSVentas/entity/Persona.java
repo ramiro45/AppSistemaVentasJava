@@ -27,6 +27,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
     @NamedQuery(name = "Persona.findByIdpersona", query = "SELECT p FROM Persona p WHERE p.idpersona = :idpersona"),
+    @NamedQuery(name = "Persona.findByProveedorxNumDoc", query = "SELECT p FROM Persona p WHERE p.numDocumento = :numDocumento AND p.tipoPersona='Proveedor'"),
     @NamedQuery(name = "Persona.findByTipoPersona", query = "SELECT p FROM Persona p WHERE p.tipoPersona = :tipoPersona"),
     @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
     @NamedQuery(name = "Persona.findByTipoDocumento", query = "SELECT p FROM Persona p WHERE p.tipoDocumento = :tipoDocumento"),
@@ -180,5 +181,5 @@ public class Persona implements Serializable {
     public String toString() {
         return "tallerFicsa.proyectoSVentas.entity.Persona[ idpersona=" + idpersona + " ]";
     }
-    
+
 }

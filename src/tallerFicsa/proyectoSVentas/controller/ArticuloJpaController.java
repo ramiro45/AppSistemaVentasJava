@@ -32,12 +32,11 @@ public class ArticuloJpaController implements Serializable {
         this.emf = emf;
     }
     private EntityManagerFactory emf = null;
-    
+
     public ArticuloJpaController() {
         this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
     }
-    
-    
+
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
@@ -267,6 +266,22 @@ public class ArticuloJpaController implements Serializable {
         }
     }
 
+    public List<Articulo> listarArticulosActivos() {
+        EntityManager em = getEntityManager();
+        try {
+            List<Articulo> articulos = em.createNamedQuery("Articulo.findAll", Articulo.class)
+                    .getResultList();
+
+            if (articulos.size() > 0) {
+                return articulos;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
+
     public Articulo findArticulo(Integer id) {
         EntityManager em = getEntityManager();
         try {
@@ -288,5 +303,22 @@ public class ArticuloJpaController implements Serializable {
             em.close();
         }
     }
-    
+
+    public Articulo buscarArticuloxCodigo(String codigo) {
+        EntityManager cm = getEntityManager();
+        try {
+            List<Articulo> articulo= cm.createNamedQuery("Articulo.findByArticuloxCodigo",Articulo.class)
+                    .setParameter("codigo", codigo)
+                    .getResultList();
+            if (articulo.size()>0) {
+                return articulo.get(0);
+            }else{
+                return null;
+            }
+        }finally{
+            cm.close();
+        }
+
+    }
+
 }

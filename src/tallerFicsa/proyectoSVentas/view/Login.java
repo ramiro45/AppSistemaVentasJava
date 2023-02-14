@@ -9,6 +9,7 @@ import tallerFicsa.proyectoSVentas.controller.UsuarioJpaController;
 import tallerFicsa.proyectoSVentas.entity.Usuario;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -61,6 +62,11 @@ public class Login extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyTyped(evt);
+            }
+        });
 
         jLabel1.setBackground(new java.awt.Color(102, 255, 102));
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
@@ -73,6 +79,16 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Clave:");
 
         txtClave.setFont(new java.awt.Font("Candara", 0, 14)); // NOI18N
+        txtClave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClaveActionPerformed(evt);
+            }
+        });
+        txtClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtClaveKeyTyped(evt);
+            }
+        });
 
         btnIngresar.setBackground(new java.awt.Color(51, 51, 255));
         btnIngresar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -142,22 +158,32 @@ public class Login extends javax.swing.JFrame {
         try {
             AdministradorFrame af = new AdministradorFrame();
             EmpleadoFrame ef = new EmpleadoFrame();
-            user = ujc.findByUsuarioAndClave(txtUsuario.getText(), convertirSHA256(txtClave.getText()));
-            if (user != null) {
-                if (user.getCargo().equalsIgnoreCase("Administrador")) {
-                    dispose();
-                    af.setVisible(true);
-                    JOptionPane.showMessageDialog(null, "Bienvenido Administrador", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-
-                } else {
-                    dispose();
-                    ef.setVisible(true);
-                }
+            if (txtUsuario.getText().isEmpty() || txtClave.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Por favor no dejar campos vacios", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
             } else {
+                user = ujc.findByUsuarioAndClave(txtUsuario.getText(), convertirSHA256(txtClave.getText()));
+                if (user != null) {
+                    if (user.getCargo().equalsIgnoreCase("Administrador")) {
+                        dispose();
+                        af.setVisible(true);
+                        af.setNombreUsuario(user.getNombre());
+                        af.setIdUsuario(user.getIdusuario());
+                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        
+//                        IngresoProductoFrame.txtUsuario.setText(user.getCargo());
+                    } else {
+                        dispose();
+                        ef.setVisible(true);
+                    }
 
-                JOptionPane.showMessageDialog(null, "Las credenciales son incorrectas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Las credenciales son incorrectas", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                }
+
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error en el sistema", "Advertencia", JOptionPane.ERROR_MESSAGE);
 
@@ -183,9 +209,29 @@ public class Login extends javax.swing.JFrame {
         return sb.toString();
     }
 
+
+
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClaveActionPerformed
+
+    private void txtUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+            btnIngresar.doClick();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyTyped
+
+    private void txtClaveKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtClaveKeyTyped
+        char teclaPresionada = evt.getKeyChar();
+        if (teclaPresionada == KeyEvent.VK_ENTER) {
+            btnIngresar.doClick();
+        }
+    }//GEN-LAST:event_txtClaveKeyTyped
 
     /**
      * @param args the command line arguments

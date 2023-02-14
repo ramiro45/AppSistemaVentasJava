@@ -27,8 +27,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "articulo")
 @NamedQueries({
-    @NamedQuery(name = "Articulo.findAll", query = "SELECT a FROM Articulo a"),
+    @NamedQuery(name = "Articulo.findAll", query = "SELECT a FROM Articulo a WHERE a.condicion = 1"),
     @NamedQuery(name = "Articulo.findByIdarticulo", query = "SELECT a FROM Articulo a WHERE a.idarticulo = :idarticulo"),
+    @NamedQuery(name = "Articulo.findByArticuloxCodigo", query = "SELECT a FROM Articulo a WHERE a.codigo = :codigo AND a.condicion=1"),
     @NamedQuery(name = "Articulo.findByCodigo", query = "SELECT a FROM Articulo a WHERE a.codigo = :codigo"),
     @NamedQuery(name = "Articulo.findByNombre", query = "SELECT a FROM Articulo a WHERE a.nombre = :nombre"),
     @NamedQuery(name = "Articulo.findByStock", query = "SELECT a FROM Articulo a WHERE a.stock = :stock"),
@@ -115,7 +116,6 @@ public class Articulo implements Serializable {
         this.descripcion = descripcion;
     }
 
-
     public Categoria getIdcategoria() {
         return idcategoria;
     }
@@ -172,5 +172,5 @@ public class Articulo implements Serializable {
     public void setCondicion(Integer condicion) {
         this.condicion = condicion;
     }
-    
+
 }

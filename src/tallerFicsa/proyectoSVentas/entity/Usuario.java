@@ -62,6 +62,7 @@ public class Usuario implements Serializable {
     private String telefono;
     @Column(name = "email")
     private String email;
+    @Basic(optional = false)
     @Column(name = "cargo")
     private String cargo;
     @Basic(optional = false)
@@ -70,19 +71,16 @@ public class Usuario implements Serializable {
     @Basic(optional = false)
     @Column(name = "clave")
     private String clave;
-    @Basic(optional = false)
     @Column(name = "imagen")
     private String imagen;
     @Basic(optional = false)
     @Column(name = "condicion")
-    private short condicion;
+    private int condicion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idusuario")
     private List<Venta> ventaList;
     @OneToMany(mappedBy = "idusuario")
     private List<Ingreso> ingresoList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idusuario")
-    private List<UsuarioPermiso> usuarioPermisoList;
-
+    
     public Usuario() {
     }
 
@@ -90,14 +88,14 @@ public class Usuario implements Serializable {
         this.idusuario = idusuario;
     }
 
-    public Usuario(Integer idusuario, String nombre, String tipoDocumento, String numDocumento, String login, String clave, String imagen, short condicion) {
+    public Usuario(Integer idusuario, String nombre, String tipoDocumento, String numDocumento, String cargo, String login, String clave, short condicion) {
         this.idusuario = idusuario;
         this.nombre = nombre;
         this.tipoDocumento = tipoDocumento;
         this.numDocumento = numDocumento;
+        this.cargo = cargo;
         this.login = login;
         this.clave = clave;
-        this.imagen = imagen;
         this.condicion = condicion;
     }
 
@@ -189,11 +187,11 @@ public class Usuario implements Serializable {
         this.imagen = imagen;
     }
 
-    public short getCondicion() {
+    public int getCondicion() {
         return condicion;
     }
 
-    public void setCondicion(short condicion) {
+    public void setCondicion(int condicion) {
         this.condicion = condicion;
     }
 
@@ -211,14 +209,6 @@ public class Usuario implements Serializable {
 
     public void setIngresoList(List<Ingreso> ingresoList) {
         this.ingresoList = ingresoList;
-    }
-
-    public List<UsuarioPermiso> getUsuarioPermisoList() {
-        return usuarioPermisoList;
-    }
-
-    public void setUsuarioPermisoList(List<UsuarioPermiso> usuarioPermisoList) {
-        this.usuarioPermisoList = usuarioPermisoList;
     }
 
     @Override
@@ -245,5 +235,5 @@ public class Usuario implements Serializable {
     public String toString() {
         return "tallerFicsa.proyectoSVentas.entity.Usuario[ idusuario=" + idusuario + " ]";
     }
-
+    
 }

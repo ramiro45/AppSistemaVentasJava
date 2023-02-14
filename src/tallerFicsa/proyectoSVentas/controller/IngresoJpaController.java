@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import tallerFicsa.proyectoSVentas.controller.exceptions.IllegalOrphanException;
 import tallerFicsa.proyectoSVentas.controller.exceptions.NonexistentEntityException;
 import tallerFicsa.proyectoSVentas.entity.Ingreso;
@@ -33,6 +34,10 @@ public class IngresoJpaController implements Serializable {
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
+    }
+
+    public IngresoJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
     }
 
     public void create(Ingreso ingreso) {
@@ -256,5 +261,72 @@ public class IngresoJpaController implements Serializable {
             em.close();
         }
     }
+
+        public List<Ingreso> listarIngresos() {
+        EntityManager em = getEntityManager();
+        try {
+            List<Ingreso> ingresos = em.createNamedQuery("Ingreso.findAll", Ingreso.class)
+                    .getResultList();
+
+            if (ingresos.size() > 0) {
+                return ingresos;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
     
+    public int obtenerIdIngreso() {
+        EntityManager cm = getEntityManager();
+        try {
+            int idIngreso = cm.createNamedQuery("Ingreso.findByIdingreso", Integer.class)
+                    .getSingleResult();
+            if (idIngreso > 0) {
+                return idIngreso;
+            } else {
+                return 0;
+            }
+        } finally {
+            cm.close();
+        }
+    }
+
+    public String maxNumComprobanteBoleta() {
+        EntityManager cm = getEntityManager();
+        try {
+            String numComprobante_Boleta = cm.createNamedQuery("Ingreso.findByMaxNumComprobanteBoleta", String.class)
+                    .getSingleResult();
+            if (numComprobante_Boleta.isEmpty()) {
+                return null;
+            } else {
+                
+                return numComprobante_Boleta;
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            cm.close();
+        }
+    }
+
+    public String maxNumComprobanteFactura() {
+        EntityManager cm = getEntityManager();
+        try {
+            String numComprobante_Factura = cm.createNamedQuery("Ingreso.findByMaxNumComprobanteFactura", String.class)
+                    .getSingleResult();
+            if (numComprobante_Factura.isEmpty() ) {
+                return null;
+            } else {
+                
+                return numComprobante_Factura;
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            cm.close();
+        }
+    }
+
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import tallerFicsa.proyectoSVentas.controller.exceptions.IllegalOrphanException;
 import tallerFicsa.proyectoSVentas.controller.exceptions.NonexistentEntityException;
 import tallerFicsa.proyectoSVentas.entity.Ingreso;
@@ -27,6 +28,10 @@ public class PersonaJpaController implements Serializable {
 
     public PersonaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
+    }
+
+    public PersonaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
     }
     private EntityManagerFactory emf = null;
 
@@ -253,4 +258,23 @@ public class PersonaJpaController implements Serializable {
         }
     }
     
+    
+    public Persona buscarProveedorxNumDocumento(String numDocumento){
+        EntityManager cm = getEntityManager();
+        try {
+             
+            List<Persona> proveedor= cm.createNamedQuery("Persona.findByProveedorxNumDoc",Persona.class)
+                    .setParameter("numDocumento", numDocumento )
+                    .getResultList();
+            if (proveedor.size()>0) {
+                return proveedor.get(0);
+            } else {
+                return null;
+            }
+        } catch(Exception e) {
+            return null;
+        }
+        
+    }
+
 }
