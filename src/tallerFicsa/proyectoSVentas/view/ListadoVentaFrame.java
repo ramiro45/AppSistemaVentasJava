@@ -161,7 +161,7 @@ public class ListadoVentaFrame extends javax.swing.JInternalFrame {
             try {
                 int row = tblDatos.getSelectedRow();
                 int idIngreso = Integer.parseInt(tblDatos.getValueAt(row, 0).toString());
-                if (JOptionPane.showConfirmDialog(null, "Quieres ver el detalle de este ingreso ?") == JOptionPane.YES_OPTION) {
+                if (JOptionPane.showConfirmDialog(null, "Quieres ver el detalle de esta venta ?") == JOptionPane.YES_OPTION) {
                         ListaDetalleVentaFrame ldif = new ListaDetalleVentaFrame(idIngreso);
                        // ldif.setIdIngreso(idIngreso);
                         AdministradorFrame.VentanaPrincipal.add(ldif);                        

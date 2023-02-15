@@ -169,7 +169,7 @@ public class Login extends javax.swing.JFrame {
                         af.setVisible(true);
                         af.setNombreUsuario(user.getNombre());
                         af.setIdUsuario(user.getIdusuario());
-                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Bienvenido Administrador: "+user.getNombre(), "Informacion", JOptionPane.INFORMATION_MESSAGE);
                         
 //                        IngresoProductoFrame.txtUsuario.setText(user.getCargo());
                     } else {
