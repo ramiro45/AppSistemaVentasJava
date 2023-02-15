@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import tallerFicsa.proyectoSVentas.controller.exceptions.NonexistentEntityException;
@@ -23,14 +24,20 @@ import tallerFicsa.proyectoSVentas.entity.Venta;
  */
 public class DetalleVentaJpaController implements Serializable {
 
-    public DetalleVentaJpaController(EntityManagerFactory emf) {
+  public DetalleVentaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+
+    public DetalleVentaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
+    }
+
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
 
     public void create(DetalleVenta detalleVenta) {
         EntityManager em = null;
@@ -63,7 +70,24 @@ public class DetalleVentaJpaController implements Serializable {
             }
         }
     }
+public List<DetalleVenta> ListarDetalleVentaxIdVenta(int id) {
+        EntityManager em = getEntityManager();
+        Venta Ingres = new Venta();
+        Ingres.setIdventa(id);
+        try {
+            List<DetalleVenta> detalleIngresos = em.createNamedQuery("DetalleVenta.findAllxIdVenta", DetalleVenta.class)
+                    .setParameter("idventa", Ingres)
+                    .getResultList();
 
+            if (detalleIngresos.size() > 0) {
+                return detalleIngresos;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
     public void edit(DetalleVenta detalleVenta) throws NonexistentEntityException, Exception {
         EntityManager em = null;
         try {

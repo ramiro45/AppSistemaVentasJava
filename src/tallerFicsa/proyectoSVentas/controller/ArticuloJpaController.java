@@ -320,5 +320,20 @@ public class ArticuloJpaController implements Serializable {
         }
 
     }
+ public Articulo buscarArticuloVxCodigo(String codigo) {
+        EntityManager cm = getEntityManager();
+        try {
+            List<Articulo> articulo= cm.createNamedQuery("Articulo.findByArticuloVxCodigo",Articulo.class)
+                    .setParameter("codigo", codigo)
+                    .getResultList();
+            if (articulo.size()>0) {
+                return articulo.get(0);
+            }else{
+                return null;
+            }
+        }finally{
+            cm.close();
+        }
 
+    }
 }

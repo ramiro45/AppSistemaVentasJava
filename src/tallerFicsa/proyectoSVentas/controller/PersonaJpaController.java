@@ -273,8 +273,22 @@ public class PersonaJpaController implements Serializable {
             }
         } catch(Exception e) {
             return null;
+        }}
+        public Persona buscarClientexNumDocumento(String numDocumento){
+        EntityManager cm = getEntityManager();
+        try {
+             
+            List<Persona> proveedor= cm.createNamedQuery("Persona.findByClientexNumDoc",Persona.class)
+                    .setParameter("numDocumento", numDocumento )
+                    .getResultList();
+            if (proveedor.size()>0) {
+                return proveedor.get(0);
+            } else {
+                return null;
+            }
+        } catch(Exception e) {
+            return null;
         }
-        
     }
 
 }

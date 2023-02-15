@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import tallerFicsa.proyectoSVentas.controller.exceptions.IllegalOrphanException;
 import tallerFicsa.proyectoSVentas.controller.exceptions.NonexistentEntityException;
 import tallerFicsa.proyectoSVentas.entity.Venta;
@@ -26,9 +27,15 @@ import tallerFicsa.proyectoSVentas.entity.Venta;
  */
 public class VentaJpaController implements Serializable {
 
+   
     public VentaJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    
+    public VentaJpaController() {
+        this.emf = Persistence.createEntityManagerFactory("ProyectoSVentasPU");
+    }
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -243,7 +250,21 @@ public class VentaJpaController implements Serializable {
             em.close();
         }
     }
+public List<Venta> listarVentas() {
+        EntityManager em = getEntityManager();
+        try {
+            List<Venta> ingresos = em.createNamedQuery("Venta.findAll", Venta.class)
+                    .getResultList();
 
+            if (ingresos.size() > 0) {
+                return ingresos;
+            } else {
+                return null;
+            }
+        } finally {
+            em.close();
+        }
+    }
     public int getVentaCount() {
         EntityManager em = getEntityManager();
         try {
@@ -256,5 +277,52 @@ public class VentaJpaController implements Serializable {
             em.close();
         }
     }
-    
+  public String maxNumComprobanteBoleta() {
+        EntityManager cm = getEntityManager();
+        try {
+            String numComprobante_Boleta = cm.createNamedQuery("Venta.findByMaxNumComprobanteBoleta", String.class)
+                    .getSingleResult();
+            if (numComprobante_Boleta.isEmpty()) {
+                return null;
+            } else {
+                
+                return numComprobante_Boleta;
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            cm.close();
+        }
+    }
+    public int obtenerIdIngreso() {
+        EntityManager cm = getEntityManager();
+        try {
+            int idIngreso = cm.createNamedQuery("Ingreso.findByIdven", Integer.class)
+                    .getSingleResult();
+            if (idIngreso > 0) {
+                return idIngreso;
+            } else {
+                return 0;
+            }
+        } finally {
+            cm.close();
+        }
+    }
+    public String maxNumComprobanteFactura() {
+        EntityManager cm = getEntityManager();
+        try {
+            String numComprobante_Factura = cm.createNamedQuery("Venta.findByMaxNumComprobanteFactura", String.class)
+                    .getSingleResult();
+            if (numComprobante_Factura.isEmpty() ) {
+                return null;
+            } else {
+                
+                return numComprobante_Factura;
+            }
+        } catch (Exception e) {
+            return null;
+        } finally {
+            cm.close();
+        }
+    }  
 }

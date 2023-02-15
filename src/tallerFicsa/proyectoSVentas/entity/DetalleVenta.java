@@ -26,6 +26,7 @@ import javax.persistence.Table;
 @Table(name = "detalle_venta")
 @NamedQueries({
     @NamedQuery(name = "DetalleVenta.findAll", query = "SELECT d FROM DetalleVenta d"),
+     @NamedQuery(name = "DetalleVenta.findAllxIdVenta", query = "SELECT d FROM DetalleVenta d WHERE d.idventa= :idventa"), 
     @NamedQuery(name = "DetalleVenta.findByIddetalleVenta", query = "SELECT d FROM DetalleVenta d WHERE d.iddetalleVenta = :iddetalleVenta"),
     @NamedQuery(name = "DetalleVenta.findByCantidad", query = "SELECT d FROM DetalleVenta d WHERE d.cantidad = :cantidad"),
     @NamedQuery(name = "DetalleVenta.findByPrecioVenta", query = "SELECT d FROM DetalleVenta d WHERE d.precioVenta = :precioVenta"),

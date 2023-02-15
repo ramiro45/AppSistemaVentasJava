@@ -217,5 +217,34 @@ public class DetalleIngresoJpaController implements Serializable {
             em.close();
         }
     }
+public String ExtraerPrecioVenta (String codigo) {
+    String preciov="vacio";
+    int  b= Integer.parseInt(codigo);
+     int idArticuloInt=0;
+        EntityManager cm = getEntityManager();
+        try {
+            List<DetalleIngreso> articulo= cm.createNamedQuery("DetalleIngreso.findByEPrecioVenta",DetalleIngreso.class)
+                  .getResultList();
+           
+                for (int i = 0; i < articulo.size(); i++) {
+                String idArticuloString = articulo.get(i).getIdarticulo().toString();
+                String cadena = idArticuloString;
+                int inicio = cadena.indexOf("idarticulo=") + "idarticulo=".length();
+                String numeroString = cadena.substring(inicio);
+                numeroString = numeroString.replaceAll("[^0-9]", "");
+                int numero = Integer.parseInt(numeroString);
+                   if(numeroString.equals(codigo)){
+                        preciov =articulo.get(i).getPrecioVenta().toString() ;
 
+            }
+                
+                }
+        
+        
+        } finally {
+            cm.close();
+        }
+        return preciov;
+
+    }
 }

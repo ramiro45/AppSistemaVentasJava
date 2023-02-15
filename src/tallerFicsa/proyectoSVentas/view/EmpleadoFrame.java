@@ -4,18 +4,44 @@
  */
 package tallerFicsa.proyectoSVentas.view;
 
+import java.awt.Dimension;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Usuario
  */
 public class EmpleadoFrame extends javax.swing.JFrame {
 
+    String nombreUsuario;
+    int idUsuario;
+
     /**
-     * Creates new form EmpleadoFrame
+     * Creates new form AdministradorFrame
      */
     public EmpleadoFrame() {
         initComponents();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
+
+    public void setNombreUsuario(String dato) {
+        this.nombreUsuario = dato;
+    }
+
+    public String getNombreUsuario() {
+        return this.nombreUsuario;
+    }
+
+    public int getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(int idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,30 +52,127 @@ public class EmpleadoFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        VentanaPrincipal = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        menuSalir = new javax.swing.JMenuItem();
+        Menu2 = new javax.swing.JMenu();
+        MenuCategoria = new javax.swing.JMenuItem();
+        MenuProducto = new javax.swing.JMenuItem();
+        MenuCliente = new javax.swing.JMenuItem();
+        MenuProveedor = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+        MenuIngresar = new javax.swing.JMenuItem();
+        MenuIngresar1 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menuConsultaIngreso = new javax.swing.JMenuItem();
+        menuConsultaVenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("EMPLEADO");
+        setTitle("ADMINISTRADOR");
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 504, Short.MAX_VALUE)
+        javax.swing.GroupLayout VentanaPrincipalLayout = new javax.swing.GroupLayout(VentanaPrincipal);
+        VentanaPrincipal.setLayout(VentanaPrincipalLayout);
+        VentanaPrincipalLayout.setHorizontalGroup(
+            VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 594, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 329, Short.MAX_VALUE)
+        VentanaPrincipalLayout.setVerticalGroup(
+            VentanaPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 408, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("File");
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tallerFicsa/proyectoSVentas/Images/menu.png"))); // NOI18N
+        jMenu1.setText("Inicio");
+
+        menuSalir.setText("Salir");
+        menuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuSalirActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuSalir);
+
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Edit");
+        Menu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tallerFicsa/proyectoSVentas/Images/mantenimiento.png"))); // NOI18N
+        Menu2.setText("Mantenimiento");
+
+        MenuCategoria.setText("Categorias");
+        MenuCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuCategoriaActionPerformed(evt);
+            }
+        });
+        Menu2.add(MenuCategoria);
+
+        MenuProducto.setText("Articulos");
+        MenuProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuProductoActionPerformed(evt);
+            }
+        });
+        Menu2.add(MenuProducto);
+
+        MenuCliente.setText("Clientes");
+        MenuCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuClienteActionPerformed(evt);
+            }
+        });
+        Menu2.add(MenuCliente);
+
+        MenuProveedor.setText("Proveedores");
+        MenuProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuProveedorActionPerformed(evt);
+            }
+        });
+        Menu2.add(MenuProveedor);
+
+        jMenuBar1.add(Menu2);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tallerFicsa/proyectoSVentas/Images/portapapeles.png"))); // NOI18N
+        jMenu2.setText("Operaciones");
+
+        MenuIngresar.setText("Ingreso de productos");
+        MenuIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuIngresarActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuIngresar);
+
+        MenuIngresar1.setText("Venta de productos");
+        MenuIngresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuIngresar1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(MenuIngresar1);
+
         jMenuBar1.add(jMenu2);
+
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tallerFicsa/proyectoSVentas/Images/consulta.png"))); // NOI18N
+        jMenu4.setText("Consulta de Operaciones");
+
+        menuConsultaIngreso.setText("Ingresos");
+        menuConsultaIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaIngresoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuConsultaIngreso);
+
+        menuConsultaVenta.setText("Ventas");
+        menuConsultaVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultaVentaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuConsultaVenta);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -57,15 +180,82 @@ public class EmpleadoFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(VentanaPrincipal)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(VentanaPrincipal)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void MenuCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuCategoriaActionPerformed
+        // TODO add your handling code here:
+        CategoriaFrame categoria = new CategoriaFrame();
+        centrarVentana(categoria);
+    }//GEN-LAST:event_MenuCategoriaActionPerformed
+
+    private void MenuProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProductoActionPerformed
+        ArticuloFrame articulo = new ArticuloFrame();
+        centrarVentana(articulo);
+    }//GEN-LAST:event_MenuProductoActionPerformed
+
+    private void MenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuClienteActionPerformed
+        ClienteFrame cliente = new ClienteFrame();
+        centrarVentana(cliente);
+    }//GEN-LAST:event_MenuClienteActionPerformed
+
+    private void MenuProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuProveedorActionPerformed
+         ProveedorFrame Proveedor = new ProveedorFrame();
+        centrarVentana(Proveedor);
+    }//GEN-LAST:event_MenuProveedorActionPerformed
+
+    private void menuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSalirActionPerformed
+        EmpleadoFrame af = new EmpleadoFrame();
+        dispose();
+    }//GEN-LAST:event_menuSalirActionPerformed
+
+    private void MenuIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresarActionPerformed
+        IngresoProductoFrame ipf = new IngresoProductoFrame();
+        ipf.setUsuario(this.getNombreUsuario());
+        ipf.setIdUsuario(this.getIdUsuario());
+        centrarVentana(ipf);
+
+    }//GEN-LAST:event_MenuIngresarActionPerformed
+
+    private void menuConsultaIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaIngresoActionPerformed
+        ListadoIngresosFrame1 lipf = new ListadoIngresosFrame1();
+        centrarVentana(lipf);
+    }//GEN-LAST:event_menuConsultaIngresoActionPerformed
+
+    private void MenuIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresar1ActionPerformed
+          VentaProductoFrame ipf = new VentaProductoFrame();
+        ipf.setUsuario(this.getNombreUsuario());
+        ipf.setIdUsuario(this.getIdUsuario());
+        centrarVentana(ipf);
+    }//GEN-LAST:event_MenuIngresar1ActionPerformed
+
+    private void menuConsultaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaVentaActionPerformed
+       ListadoVentaFrame1 lipf = new ListadoVentaFrame1();
+        centrarVentana(lipf);
+    }//GEN-LAST:event_menuConsultaVentaActionPerformed
+
+    public void centrarVentana(JInternalFrame frame) {
+        VentanaPrincipal.add(frame);
+        Dimension dimension = VentanaPrincipal.getSize();
+        Dimension dimensionIF = frame.getSize();
+        if (dimensionIF.width > dimension.height) {
+            frame.setLocation((dimension.width - dimensionIF.height) / 2, (dimensionIF.width - dimension.height) / 2);
+
+        } else {
+            frame.setLocation((dimension.width - dimensionIF.height) / 2, (dimension.height - dimensionIF.width) / 2);
+
+        }
+        frame.show();
+
+
+    }
 
     /**
      * @param args the command line arguments
@@ -93,6 +283,7 @@ public class EmpleadoFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(EmpleadoFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -103,9 +294,20 @@ public class EmpleadoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu Menu2;
+    private javax.swing.JMenuItem MenuCategoria;
+    private javax.swing.JMenuItem MenuCliente;
+    private javax.swing.JMenuItem MenuIngresar;
+    private javax.swing.JMenuItem MenuIngresar1;
+    private javax.swing.JMenuItem MenuProducto;
+    private javax.swing.JMenuItem MenuProveedor;
+    public static javax.swing.JDesktopPane VentanaPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem menuConsultaIngreso;
+    private javax.swing.JMenuItem menuConsultaVenta;
+    private javax.swing.JMenuItem menuSalir;
     // End of variables declaration//GEN-END:variables
 }

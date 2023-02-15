@@ -27,7 +27,8 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "DetalleIngreso.findAll", query = "SELECT d FROM DetalleIngreso d"),
     @NamedQuery(name = "DetalleIngreso.findAllxIdIngreso", query = "SELECT d FROM DetalleIngreso d WHERE d.idingreso= :idingreso"),
-    @NamedQuery(name = "DetalleIngreso.findByIddetalleIngreso", query = "SELECT d FROM DetalleIngreso d WHERE d.iddetalleIngreso = :iddetalleIngreso"),
+     @NamedQuery(name = "DetalleIngreso.findByEPrecioVenta", query = "SELECT d FROM DetalleIngreso d"),
+   @NamedQuery(name = "DetalleIngreso.findByIddetalleIngreso", query = "SELECT d FROM DetalleIngreso d WHERE d.iddetalleIngreso = :iddetalleIngreso"),
     @NamedQuery(name = "DetalleIngreso.findByCantidad", query = "SELECT d FROM DetalleIngreso d WHERE d.cantidad = :cantidad"),
     @NamedQuery(name = "DetalleIngreso.findByPrecioCompra", query = "SELECT d FROM DetalleIngreso d WHERE d.precioCompra = :precioCompra"),
     @NamedQuery(name = "DetalleIngreso.findByPrecioVenta", query = "SELECT d FROM DetalleIngreso d WHERE d.precioVenta = :precioVenta")})
@@ -49,6 +50,8 @@ public class DetalleIngreso implements Serializable {
     @Basic(optional = false)
     @Column(name = "precio_venta")
     private Double precioVenta;
+//     @Column(name = "idarticulo")
+//    private int idarticulo1;
     @JoinColumn(name = "idarticulo", referencedColumnName = "idarticulo")
     @ManyToOne(optional = false)
     private Articulo idarticulo;

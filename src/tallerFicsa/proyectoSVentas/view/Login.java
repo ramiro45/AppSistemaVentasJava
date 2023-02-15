@@ -175,6 +175,10 @@ public class Login extends javax.swing.JFrame {
                     } else {
                         dispose();
                         ef.setVisible(true);
+                        ef.setNombreUsuario(user.getNombre());
+                        ef.setIdUsuario(user.getIdusuario());
+                        JOptionPane.showMessageDialog(null, "Bienvenido Empleado", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                        
                     }
 
                 } else {

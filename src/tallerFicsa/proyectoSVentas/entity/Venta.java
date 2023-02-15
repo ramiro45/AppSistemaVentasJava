@@ -32,6 +32,9 @@ import javax.persistence.TemporalType;
 @Table(name = "venta")
 @NamedQueries({
     @NamedQuery(name = "Venta.findAll", query = "SELECT v FROM Venta v"),
+    @NamedQuery(name = "Ingreso.findByIdven", query = "SELECT MAX(i.idventa) FROM Venta i"),
+    @NamedQuery(name = "Venta.findByMaxNumComprobanteBoleta", query = "SELECT MAX(i.numComprobante) FROM Venta i WHERE i.tipoComprobante='Boleta'"),
+    @NamedQuery(name = "Venta.findByMaxNumComprobanteFactura", query = "SELECT MAX(i.numComprobante) FROM Venta i WHERE i.tipoComprobante='Factura'"),
     @NamedQuery(name = "Venta.findByIdventa", query = "SELECT v FROM Venta v WHERE v.idventa = :idventa"),
     @NamedQuery(name = "Venta.findByTipoComprobante", query = "SELECT v FROM Venta v WHERE v.tipoComprobante = :tipoComprobante"),
     @NamedQuery(name = "Venta.findBySerieComprobante", query = "SELECT v FROM Venta v WHERE v.serieComprobante = :serieComprobante"),
