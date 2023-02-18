@@ -63,13 +63,13 @@ public class EmpleadoFrame extends javax.swing.JFrame {
         MenuProveedor = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         MenuIngresar = new javax.swing.JMenuItem();
-        MenuIngresar1 = new javax.swing.JMenuItem();
+        MenuVenta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuConsultaIngreso = new javax.swing.JMenuItem();
         menuConsultaVenta = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("ADMINISTRADOR");
+        setTitle("EMPLEADO");
 
         javax.swing.GroupLayout VentanaPrincipalLayout = new javax.swing.GroupLayout(VentanaPrincipal);
         VentanaPrincipal.setLayout(VentanaPrincipalLayout);
@@ -143,13 +143,13 @@ public class EmpleadoFrame extends javax.swing.JFrame {
         });
         jMenu2.add(MenuIngresar);
 
-        MenuIngresar1.setText("Venta de productos");
-        MenuIngresar1.addActionListener(new java.awt.event.ActionListener() {
+        MenuVenta.setText("Venta de productos");
+        MenuVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MenuIngresar1ActionPerformed(evt);
+                MenuVentaActionPerformed(evt);
             }
         });
-        jMenu2.add(MenuIngresar1);
+        jMenu2.add(MenuVenta);
 
         jMenuBar1.add(jMenu2);
 
@@ -187,6 +187,8 @@ public class EmpleadoFrame extends javax.swing.JFrame {
             .addComponent(VentanaPrincipal)
         );
 
+        getAccessibleContext().setAccessibleName("Empleado");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,7 +219,7 @@ public class EmpleadoFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_menuSalirActionPerformed
 
     private void MenuIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresarActionPerformed
-        IngresoProductoFrame ipf = new IngresoProductoFrame();
+        IngresoProductoFrame_1 ipf = new IngresoProductoFrame_1();
         ipf.setUsuario(this.getNombreUsuario());
         ipf.setIdUsuario(this.getIdUsuario());
         centrarVentana(ipf);
@@ -229,12 +231,12 @@ public class EmpleadoFrame extends javax.swing.JFrame {
         centrarVentana(lipf);
     }//GEN-LAST:event_menuConsultaIngresoActionPerformed
 
-    private void MenuIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuIngresar1ActionPerformed
-          VentaProductoFrame ipf = new VentaProductoFrame();
+    private void MenuVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVentaActionPerformed
+        VentaProductoFrame_1 ipf = new VentaProductoFrame_1();
         ipf.setUsuario(this.getNombreUsuario());
         ipf.setIdUsuario(this.getIdUsuario());
         centrarVentana(ipf);
-    }//GEN-LAST:event_MenuIngresar1ActionPerformed
+    }//GEN-LAST:event_MenuVentaActionPerformed
 
     private void menuConsultaVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultaVentaActionPerformed
        ListadoVentaFrame1 lipf = new ListadoVentaFrame1();
@@ -298,9 +300,9 @@ public class EmpleadoFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem MenuCategoria;
     private javax.swing.JMenuItem MenuCliente;
     private javax.swing.JMenuItem MenuIngresar;
-    private javax.swing.JMenuItem MenuIngresar1;
     private javax.swing.JMenuItem MenuProducto;
     private javax.swing.JMenuItem MenuProveedor;
+    private javax.swing.JMenuItem MenuVenta;
     public static javax.swing.JDesktopPane VentanaPrincipal;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

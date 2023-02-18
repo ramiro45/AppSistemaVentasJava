@@ -255,6 +255,8 @@ public class VentaProductoFrame extends javax.swing.JInternalFrame {
             }
         });
 
+        txtPrecioVenta.setEditable(false);
+
         jLabel9.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel9.setText("CLIENTE");
 
@@ -576,7 +578,7 @@ public class VentaProductoFrame extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarVentaActionPerformed
-        if (txtTotalPagar.getText().equalsIgnoreCase("")) {
+        if (txtTotalPagar.getText().equalsIgnoreCase("") || txtSerie.getText().equalsIgnoreCase("") || txtComprobante.getText().equalsIgnoreCase("")) {
             JOptionPane.showMessageDialog(this, "Ingrese datos por favor", "Advertencia", JOptionPane.WARNING_MESSAGE);
         } else {
             guardarVenta();
@@ -762,12 +764,19 @@ public class VentaProductoFrame extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un codigo de producto");
         } else {
             ArticuloJpaController article = new ArticuloJpaController();
-            DetalleIngresoJpaController article1 = new DetalleIngresoJpaController();
+          //  DetalleIngresoJpaController article1 = new DetalleIngresoJpaController();
             articulo = article.buscarArticuloVxCodigo(codigo);
             if (articulo != null) {
                 txtProducto.setText(articulo.getNombre());
                 txtStock.setText(articulo.getStock().toString());
-                txtPrecioVenta.setText(ExtraerPrecioVenta(articulo.getIdarticulo().toString()));
+                if (ExtraerPrecioVenta(articulo.getIdarticulo().toString()).equalsIgnoreCase("vacio")) {
+                   JOptionPane.showMessageDialog(this, "El articulo no tiene precio de venta registrado.En el menu de consulta de operaciones(Listado de ingresos),revisa los articulos que si tengan");
+                   txtProducto.setText("");
+                   txtStock.setText("");
+                }
+                else{
+                    txtPrecioVenta.setText(ExtraerPrecioVenta(articulo.getIdarticulo().toString()));
+                }       
             } else {
                 r = JOptionPane.showConfirmDialog(this, "Articulo no encontrado, Desea añadir un nuevo registro? ");
                 if (r == 0) {

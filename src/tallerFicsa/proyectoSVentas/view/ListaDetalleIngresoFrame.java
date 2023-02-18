@@ -50,10 +50,11 @@ public class ListaDetalleIngresoFrame extends javax.swing.JInternalFrame {
             for (int i = 0; i < listadetalleIngresos.size(); i++) {
                 detalle = (DetalleIngreso) listadetalleIngresos.get(i);
                 obj[0] = detalle.getIddetalleIngreso();
-                obj[1] = detalle.getIdarticulo().getNombre();
-                obj[2] = detalle.getCantidad();
-                obj[3] = detalle.getPrecioCompra();
-                obj[4] = detalle.getPrecioVenta();
+                obj[1]= detalle.getIdarticulo().getCodigo();
+                obj[2] = detalle.getIdarticulo().getNombre();
+                obj[3] = detalle.getCantidad();
+                obj[4] = detalle.getPrecioCompra();
+                obj[5] = detalle.getPrecioVenta();
                 model.addRow(obj);
             }
             tblDatos.setModel(model);
@@ -86,13 +87,13 @@ public class ListaDetalleIngresoFrame extends javax.swing.JInternalFrame {
 
         tblDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Id", "Articulo", "Cantidad", "Precio Compra", "Precio Venta"
+                "Id", "Codigo", "Articulo", "Cantidad", "Precio Compra", "Precio Venta"
             }
         ));
         jScrollPane1.setViewportView(tblDatos);

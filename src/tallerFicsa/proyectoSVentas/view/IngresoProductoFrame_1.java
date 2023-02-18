@@ -24,7 +24,7 @@ import tallerFicsa.proyectoSVentas.entity.Usuario;
  *
  * @author Usuario
  */
-public class IngresoProductoFrame extends javax.swing.JInternalFrame {
+public class IngresoProductoFrame_1 extends javax.swing.JInternalFrame {
 
     String usuario;
     int idUsuario;
@@ -42,7 +42,7 @@ public class IngresoProductoFrame extends javax.swing.JInternalFrame {
     /**
      * Creates new form IngresoProductoFrame
      */
-    public IngresoProductoFrame() {
+    public IngresoProductoFrame_1() {
         initComponents();
         txtFecha.setText(ObtenerFecha());
 
@@ -762,7 +762,7 @@ public class IngresoProductoFrame extends javax.swing.JInternalFrame {
                 r = JOptionPane.showConfirmDialog(this, "Articulo no encontrado, Desea añadir un nuevo registro? ");
                 if (r == 0) {
                     ArticuloFrame arf = new ArticuloFrame();
-                    AdministradorFrame.VentanaPrincipal.add(arf);
+                    EmpleadoFrame.VentanaPrincipal.add(arf);
                     arf.setVisible(true);
                 }
             }
